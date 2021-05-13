@@ -1,0 +1,36 @@
+{
+  "PackageName": "testpackage",
+  "Author": "apr",
+  "Version": "1.0.0",
+  "Publisher": "apr",
+  "Items": [
+    {
+      "Name": "Content Items", 
+      "InstallMode": "Overwrite",
+      "MergeMode": "Undefined",
+      "Entries": [
+        {
+          "Path": "/sitecore/content",
+          "IncludeChildren": true
+        },
+        {
+          "Path": "/sitecore/templates/Feature/Brandfolder",
+          "IncludeChildren": true
+        }
+      ]
+    }
+  ],
+  "Files": [
+    {
+      "Name": "Project Files",
+      "InstallMode": "Overwrite",
+      "MergeMode": "Undefined",
+      "Entries": [
+        {
+          "Path": "/bin/PackageCreator.dll",
+          "IncludeChildren": false
+        }
+      ]
+    }
+  ]
+}

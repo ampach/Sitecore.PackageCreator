@@ -1,0 +1,26 @@
+.DS_Store
+node_modules
+/dist
+
+**/bin
+**/obj
+
+# local env files
+.env.local
+.env.*.local
+
+# Log files
+*.log*
+
+# Editor directories and files
+.idea
+.vscode
+.vs
+*.suo
+*.ntvs*
+*.njsproj
+# *.sln
+*.sw*
+
+*.deploysecret.config
+packages
