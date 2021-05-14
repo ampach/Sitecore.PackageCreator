@@ -8,6 +8,7 @@
     public class AttachmentModel
     {
         public string Path { get;set; }
+        public string Database { get;set; }
         public bool IncludeChildren { get;set; }
 
     }

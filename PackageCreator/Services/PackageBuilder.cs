@@ -7,6 +7,7 @@
     using PackageCreator.Models;
 
     using Sitecore;
+    using Sitecore.Data;
     using Sitecore.Data.Items;
     using Sitecore.Install;
     using Sitecore.Install.Configuration;
@@ -62,10 +63,7 @@
                 }
             }
 
-            var db = Sitecore.Configuration.Factory.GetDatabase(
-                Sitecore.Configuration.Settings.GetSetting("SourceDatabase"));
-
-
+            
             foreach (var itemSource in manifest.Items)
             {
                 if (itemSource == null || itemSource.Entries == null || itemSource.Entries.Count == 0) continue;
@@ -85,7 +83,8 @@
                     
                     foreach (var item in itemSource.Entries)
                     {
-                        
+                        var db = ResolveDatabase(item.Database);
+
                         var itemUri = db.Items.GetItem(item.Path);
                         if (itemUri != null)
                         {
@@ -93,7 +92,6 @@
 
                             if (item.IncludeChildren)
                             {
-                                //decorate item name with # otherwise query will break because of special character.
                                 var paths = Sitecore.StringUtil.Split(itemUri.Paths.Path, '/', true).Where(p => p != null & p != string.Empty).Select(p => "#" + p + "#").ToList();
                                 string allChildQuery = string.Format("/{0}//*", Sitecore.StringUtil.Join(paths, "/"));
                                 var children = db.Items.Database.SelectItems(allChildQuery);
@@ -152,6 +150,20 @@
             
 
             return packagePath;
+        }
+
+        private static Database ResolveDatabase(string databaseName)
+        {
+            if (!string.IsNullOrWhiteSpace(databaseName))
+            {
+                var db = Sitecore.Configuration.Factory.GetDatabase(databaseName);
+                if (db != null)
+                    return db;
+            }
+                
+            return Sitecore.Configuration.Factory.GetDatabase(
+                    Sitecore.Configuration.Settings.GetSetting("SourceDatabase"));
+
         }
     }
 }

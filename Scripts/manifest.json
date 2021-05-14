@@ -11,11 +11,13 @@
       "Entries": [
         {
           "Path": "/sitecore/content",
-          "IncludeChildren": true
+          "IncludeChildren": true,
+          "Database": "master" 
         },
         {
           "Path": "/sitecore/templates/Feature/Brandfolder",
-          "IncludeChildren": true
+          "IncludeChildren": true,
+          "Database": "master"
         }
       ]
     }
