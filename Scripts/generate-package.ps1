@@ -1,18 +1,27 @@
-$url = "https://sc101.local/api/packages/Generate"
-$folderToDownload = '.\downloads'
+# CM server endpoint whick is used to generate package
+$url = "https://cm.sitecore-instace.com/api/packages/Generate"
 
-if (-Not (Test-Path -Path $folderToDownload)) { 
+# Derictory where a packge will be uploaded to.
+$folderForPackageUplpad = '.\downloads'
+
+# Create the upload derictory if it is not exists.
+if (-Not (Test-Path -Path $folderForPackageUplpad)) { 
 	try {
-        New-Item -Path $folderToDownload -ItemType Directory -ErrorAction Stop | Out-Null #-Force
+        New-Item -Path $folderForPackageUplpad -ItemType Directory -ErrorAction Stop | Out-Null #-Force
     }
     catch {
-        Write-Error -Message "Unable to create directory '$folderToDownload'. Error was: $_" -ErrorAction Stop
+        Write-Error -Message "Unable to create directory '$folderForPackageUplpad'. Error was: $_" -ErrorAction Stop
     }
-    "Successfully created directory '$folderToDownload'."
+    "Successfully created directory '$folderForPackageUplpad'."
 }
 
-$json = Get-Content '.\manifest.json'
-$jsonObject = $json | ConvertFrom-Json
-$output = "$folderToDownload\$($jsonObject.PackageName)-$($jsonObject.Version).zip"
+# Path to the manifest.json file which defines a package content.
+$manifestJson = Get-Content '.\manifest.json'
 
-$respons = Invoke-RestMethod -Method POST  -ContentType 'application/json' -Uri "$($url)" -body $json -OutFile $output
+$jsonObject = $manifestJson | ConvertFrom-Json
+$packageName = $jsonObject.PackageName
+$packageVersion = $jsonObject.Version
+
+$output = "{0}\{1}-{2}.zip" -f $folderToDownload, $packageName, $packageVersion
+
+$respons = Invoke-RestMethod -Method POST  -ContentType 'application/json' -Uri $url -body $manifestJson -OutFile $output
