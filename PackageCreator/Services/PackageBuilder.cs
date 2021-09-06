@@ -34,9 +34,7 @@
                     Publisher = manifest.Publisher
                 }
             };
-
-            //var sourceCollection = new SourceCollection<PackageEntry>();
-
+            
             foreach (var fileSource in manifest.Files)
             {
                 if(fileSource == null || fileSource.Entries == null || fileSource.Entries.Count == 0) continue;

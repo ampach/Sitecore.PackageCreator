@@ -1,21 +1,21 @@
 {
-  "PackageName": "testpackage",
-  "Author": "apr",
+  "PackageName": "Example-Package",
+  "Author": "Artsem Prashkovich",
   "Version": "1.0.0",
-  "Publisher": "apr",
+  "Publisher": "Artsem Prashkovich",
   "Items": [
     {
-      "Name": "Content Items", 
+      "Name": "Content Items",
       "InstallMode": "Overwrite",
       "MergeMode": "Undefined",
       "Entries": [
         {
           "Path": "/sitecore/content",
           "IncludeChildren": true,
-          "Database": "master" 
+          "Database": "master"
         },
         {
-          "Path": "/sitecore/templates/Feature/Brandfolder",
+          "Path": "/sitecore/templates/Common/Folder",
           "IncludeChildren": true,
           "Database": "master"
         }
@@ -29,7 +29,7 @@
       "MergeMode": "Undefined",
       "Entries": [
         {
-          "Path": "/bin/PackageCreator.dll",
+          "Path": "/bin/Sitecore.Kernel.dll",
           "IncludeChildren": false
         }
       ]
