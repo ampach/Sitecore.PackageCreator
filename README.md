@@ -2,6 +2,8 @@
 
 Package Creator is a simple Sitecore module which is served to generated Sitecore packages based on **manifest.json** file via POST request to the Package Creator API. This module will help you to automate the package creation in case of building CI/CD processes or in case you have a requirement to create packages programmatically or usnig scripts.
 
+The module can be sounload [here](Sitecore%20Packages/Package-Creator-1.0.zip) or on Sitecore Marketplace
+
 ## manifest.json file example
 
 ```json
