@@ -15,6 +15,9 @@ using Sitecore.Services.Infrastructure.Web.Http;
 
 namespace PackageCreator.Controllers
 {
+    using Sitecore.Services.Infrastructure.Security;
+
+    [RequiredApiKey]
     public class PackageCreatorController : ServicesApiController
     {
         [HttpPost]
