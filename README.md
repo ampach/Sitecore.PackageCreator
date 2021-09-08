@@ -103,6 +103,6 @@ $respons = Invoke-RestMethod -Method POST  -ContentType 'application/json' -Uri 
 ```
 
 
-The API utilizes the API Key mechanism provided by [Sitecore Services Client (SSC)](https://doc.sitecore.com/en/developers/101/sitecore-experience-manager/api-keys-for-the-odata-item-service.html). You'll need to create an API Key and put its Item ID for the requests.
+> The API utilizes the API Key mechanism provided by [Sitecore Services Client (SSC)](https://doc.sitecore.com/en/developers/101/sitecore-experience-manager/api-keys-for-the-odata-item-service.html). You'll need to create an API Key and put its Item ID for the requests.
 
 The result of execution is a Sitecore .zip package uploaded into the `.\downloads` folder.
