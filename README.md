@@ -73,7 +73,7 @@ The Powershell script below shows how the Package Creator can be used.
 
 ```powershell
 # CM server endpoint whick is used to generate package
-$url = "https://cm.sitecore-instace.com/api/packages/Generate"
+$url = "https://cm.sitecore-instace.com/api/packages/Generate?sc_apikey={SITECORE_API_KEY}"
 
 # Derictory where a packge will be uploaded to.
 $folderForPackageUplpad = '.\downloads'
@@ -101,4 +101,8 @@ $output = "{0}\{1}-{2}.zip" -f $folderToDownload, $packageName, $packageVersion
 $respons = Invoke-RestMethod -Method POST  -ContentType 'application/json' -Uri $url -body $manifestJson -OutFile $output
 
 ```
+
+
+The API utilizes the API Key mechanism provided by [Sitecore Services Client (SSC)](https://doc.sitecore.com/en/developers/101/sitecore-experience-manager/api-keys-for-the-odata-item-service.html). You'll need to create an API Key and put its Item ID for the requests.
+
 The result of execution is a Sitecore .zip package uploaded into the `.\downloads` folder.
